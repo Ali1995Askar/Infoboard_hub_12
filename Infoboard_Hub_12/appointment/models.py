@@ -12,3 +12,11 @@ class Appointment(models.Model):
     def __str__(self):
         return self.party_type + " organized by " + self.party_organizer + " on " + str(self.party_date)
 
+
+class Advertising (models.Model):
+    title = models.CharField(max_length=250) 
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.title 

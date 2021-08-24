@@ -1,8 +1,8 @@
 {% extends 'shared/base.html' %} 
 
 {% load static %} 
+{% block title %}Admin-dashboard{% endblock %}
 {% block content%}
-
 <br>
 <div class="container">
     <a href="{% url 'create' %}">
@@ -47,7 +47,22 @@
         {% endfor %}
         </tbody>
     </table>
+    <br><br><hr><br>
 </div>
+
+
+<div class="container">
+<h3>Update the advertising : </h3>
+<br>
+ <form method="POST" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"  class="btn-lg btn-danger" value="Submit">
+    </form>
+</div>
+<br>
+  
+
 
 {% endblock %} 
 
