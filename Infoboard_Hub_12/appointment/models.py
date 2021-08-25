@@ -1,5 +1,5 @@
 from django.db import models
-
+from solo.models import SingletonModel
 
 class Appointment(models.Model):
     party_type = models.CharField(max_length=250) 
@@ -13,9 +13,11 @@ class Appointment(models.Model):
         return self.party_type + " organized by " + self.party_organizer + " on " + str(self.party_date)
 
 
-class Advertising (models.Model):
-    title = models.CharField(max_length=250) 
-    body = models.TextField()
+class Advertising (SingletonModel):
+    singleton_instance_id = 1
+    title = models.CharField(max_length=250,  default='Hello every one') 
+    body = models.TextField(default='welcom to the party wish you all the best, have a nice day')
+    image = models.ImageField(upload_to='advertising-images/', default='logo.jpg', null=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

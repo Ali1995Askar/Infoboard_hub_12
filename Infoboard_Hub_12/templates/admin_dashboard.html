@@ -8,6 +8,9 @@
     <a href="{% url 'create' %}">
         <button type="button" class="btn btn-primary">Create an Appointment</button>
     </a>
+    <a href="{% url 'advertising-update' 1%}">
+        <button type="button" class="btn btn-danger">Update the advertising</button>
+    </a>
 <br><br>
 
     <table id="_appendHere" class="table table-striped">
@@ -51,15 +54,7 @@
 </div>
 
 
-<div class="container">
-<h3>Update the advertising : </h3>
-<br>
- <form method="POST" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit"  class="btn-lg btn-danger" value="Submit">
-    </form>
-</div>
+
 <br>
   
 

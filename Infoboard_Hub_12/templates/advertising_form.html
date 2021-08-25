@@ -1,0 +1,24 @@
+{% extends 'shared/base.html' %} 
+
+{% load static %} 
+{% block title %}advertising-form{% endblock %} 
+{% block content%}
+<br>
+<div class='container'>
+    <div class='container'>
+    <br>
+    <h3>Update the advertising</h3>
+    <br>
+        <form  method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{form.image}}
+            <div class='text-center'>
+                <input type="submit" value="Update" class="btn btn-danger">
+            </div>
+        </form>
+    <br><br>
+    </div>
+</div>
+
+{% endblock %} 
