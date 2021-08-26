@@ -1,12 +1,11 @@
 
-from django.contrib import admin
+# from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.views.generic import TemplateView
 from django.db import connection
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path("", include ('appointment.urls')),  
 ]
 

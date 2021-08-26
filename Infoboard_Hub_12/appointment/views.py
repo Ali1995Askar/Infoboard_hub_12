@@ -3,13 +3,18 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login , logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
-
+from django.utils.decorators import method_decorator
 
 from .models import Appointment, Advertising
 from .forms import AppointmentForm, AdvertisingForm, LoginForm
 
 # Create your views here.
+
+def index(request):
+    appointments = Appointment.objects.all()
+    advertising = Advertising.get_solo()
+    return render(request, 'index.html', context={'appointments': appointments, 'advertising': advertising}) 
+
 
 def admin_login(request):
 
@@ -36,12 +41,7 @@ def admin_logout (request) :
         return redirect ('/' )
 
 
-def index(request):
-    appointments = Appointment.objects.all()
-    advertising = Advertising.objects.first()
-    return render(request, 'index.html', context={'appointments': appointments, 'advertising': advertising}) 
-
-
+@login_required (login_url = 'admin-login')
 def admin_dashboard(request):
     if request.method =='POST':
         advertising_form = AdvertisingForm(request.POST)
@@ -55,6 +55,7 @@ def admin_dashboard(request):
         return render(request, 'admin_dashboard.html', context={'appointments': appointments, 'form': advertising_form }) 
 
 
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
 class AppointmentCreate(CreateView):
     login_required = True
     model = Appointment
@@ -65,6 +66,7 @@ class AppointmentCreate(CreateView):
           return reverse('dashboard')
 
 
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
 class AppointmentUpdate(UpdateView):
     model = Appointment
     form_class = AppointmentForm
@@ -76,6 +78,7 @@ class AppointmentUpdate(UpdateView):
         return reverse('dashboard')
 
 
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
 class AppointmentDelete(DeleteView):
     model = Appointment
     template_name = 'delete_appointment.html'
@@ -84,7 +87,7 @@ class AppointmentDelete(DeleteView):
         return reverse('dashboard')
 
 
-
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
 class AdvertisingUpdate(UpdateView):
     model = Advertising
     form_class = AdvertisingForm
