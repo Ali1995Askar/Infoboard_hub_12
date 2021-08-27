@@ -10,18 +10,18 @@ class AppointmentForm(forms.ModelForm):
         fields = ( 'party_type', 'party_organizer' , 'group' , 'location', 'party_date')
 
         labels= { 
-            'party_type': 'Party Type', 
-            'party_organizer': 'Party Organizer',
-            'group': 'Group',
-            'location': 'Location',
-            'party_date': 'Party Date',
+            'party_type': 'Veranstaltung', 
+            'party_organizer': 'Veranstalter',
+            'group': 'Berufsgruppe',
+            'location': 'Ort',
+            'party_date': 'Datum,Urzeit',
             }
 
         widgets = {
-            'party_type': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Type of party"}),
-            'party_organizer': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "The party organizer"}),
-            'group': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "The group invited to the party"}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Location of the party"}),
+            'party_type': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Veranstaltung"}),
+            'party_organizer': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Veranstalter"}),
+            'group': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Berufsgruppe"}),
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Ort"}),
             'party_date': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'})
             }
 
@@ -33,29 +33,29 @@ class AdvertisingForm(forms.ModelForm):
         fields = ( 'title', 'body', 'image')
       
         labels= { 
-            'title': 'Advertising title', 
-            'body': 'Advertising body',
-            'image': 'Advertising image',
+            'title': 'Betreff', 
+            'body': 'Details',
+            'image': 'Werbebild',
             }
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Title of the Advertising"}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Betreff"}),
             'body': forms.Textarea(attrs={'class': 'form-control', 
-                                            'placeholder': "Write your Body of the Advertising here" , 'style':'resize: none;'}), 
+                                            'placeholder': "Details" , 'style':'resize: none;'}), 
             'image': forms.FileInput(attrs={'type':"file" , 'class': 'form-control'}),
             }
 
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
-        label= "Username" , 
-        widget=forms.TextInput(attrs= {'class': 'form-control', 'placeholder':"username"}),
+        label= "Benutzername" , 
+        widget=forms.TextInput(attrs= {'class': 'form-control', 'placeholder':"Benutzername"}),
     )
 
     password = forms.CharField(
-        label= "Password" ,
+        label= "Kennwort" ,
         strip=False,
-        widget=forms.PasswordInput(attrs={ 'class': 'form-control', 'placeholder': "password"}),
+        widget=forms.PasswordInput(attrs={ 'class': 'form-control', 'placeholder': "Kennwort"}),
     )
 
 

@@ -6,10 +6,10 @@
 <br>
 <div class="container">
     <a href="{% url 'create' %}">
-        <button type="button" class="btn btn-primary">Create an Appointment</button>
+        <button type="button" class="btn btn-primary">Veranstaltung einlegen</button>
     </a>
     <a href="{% url 'advertising-update' 1%}">
-        <button type="button" class="btn btn-danger">Update the advertising</button>
+        <button type="button" class="btn btn-danger">Werbung bearbeiten</button>
     </a>
 <br><br>
 
@@ -17,13 +17,13 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Party Type</th>
-            <th scope="col">Party Organizer</th>
-            <th scope="col">Group</th>
-            <th scope="col">Location</th>
-            <th scope="col">Party Date</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
+            <th scope="col">Veranstaltung</th>
+            <th scope="col">Veranstalter</th>
+            <th scope="col">Berufsgruppe</th>
+            <th scope="col">Ort</th>
+            <th scope="col">Datum,Urzeit</th>
+            <th scope="col">bearbeiten</th>
+            <th scope="col">löschen</th>
         </tr>
         </thead>
         <tbody>
@@ -37,13 +37,13 @@
                 <td>{{appointment.party_date}}</td>
                 <td>
                     <a href="{% url 'update' appointment.id %}">
-                        <button type="button" class="btn btn-warning">Update</button>
+                        <button type="button" class="btn btn-warning">bearbeiten</button>
                     </a>
                 </td>
 
                 <td>
                     <a href="{% url 'delete' appointment.id %}">
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-danger">löschen</button>
                     </a>
                 </td>
             </tr>
