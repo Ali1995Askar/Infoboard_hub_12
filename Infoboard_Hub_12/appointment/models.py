@@ -15,9 +15,9 @@ class Appointment(models.Model):
 
 class Advertising (SingletonModel):
     singleton_instance_id = 1
-    title = models.CharField(max_length=250,  default='Hello every one') 
-    body = models.TextField(default='welcom to the party wish you all the best, have a nice day')
-    image = models.ImageField(upload_to='advertising-images/', default='logo.jpg', null=True) 
+    title = models.CharField(max_length=250,  default='Hallo Zusammen') 
+    body = models.TextField(default='Herzlich willkommen')
+    image = models.ImageField(upload_to='advertising-images/', default='advertising-images/logo.jpg', null=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
