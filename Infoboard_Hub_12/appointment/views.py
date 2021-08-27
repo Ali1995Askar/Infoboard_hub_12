@@ -43,16 +43,9 @@ def admin_logout (request) :
 
 @login_required (login_url = 'admin-login')
 def admin_dashboard(request):
-    if request.method =='POST':
-        advertising_form = AdvertisingForm(request.POST)
-        if advertising_form.is_valid():
-            appointments = Appointment.objects.all()
-            return render(request, 'admin_dashboard.html', context={'appointments': appointments, 'form': advertising_form }) 
-    else:
-        advertising_form = AdvertisingForm()
+    if request.method =='GET':
         appointments = Appointment.objects.all()
-
-        return render(request, 'admin_dashboard.html', context={'appointments': appointments, 'form': advertising_form }) 
+        return render(request, 'admin_dashboard.html', context={'appointments': appointments }) 
 
 
 @method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
