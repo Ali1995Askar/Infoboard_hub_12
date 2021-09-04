@@ -1,11 +1,21 @@
 from django.db import models
 from solo.models import SingletonModel
 
+
+class Group(models.Model):
+    name = models.CharField(max_length=250, default='unKnown group')
+
+    def __str__(self):
+        return self.name
+
+    
+
 class Appointment(models.Model):
     party_type = models.CharField(max_length=250) 
     party_organizer = models.CharField(max_length=250) 
-    group = models.CharField(max_length=250) 
+    group = models.ForeignKey(Group , on_delete=models.CASCADE) 
     location = models.CharField(max_length=250) 
+    room = models.CharField(max_length=250)
     party_date =  models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -21,4 +31,4 @@ class Advertising (SingletonModel):
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.title 
+        return self.title

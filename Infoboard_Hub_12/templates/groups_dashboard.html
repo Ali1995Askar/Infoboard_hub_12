@@ -1,0 +1,57 @@
+{% extends 'shared/base.html' %} 
+
+{% load static %} 
+{% block title %}Groups-dashboard{% endblock %}
+{% block content%}
+<br>
+<div class="container">
+    <a href="{% url 'group-create' %}">
+        <button type="button" class="btn btn-primary">Create Group</button>
+    </a>
+  
+<br><br>
+
+    <table id="_appendHere" class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">bearbeiten</th>
+            <th scope="col">löschen</th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        {% for group in groups %}
+            <tr>
+            <th scope="row"> {{ group.id }}</th>
+                <td>{{group.name}}</td>
+                
+              
+                <td>
+                    <a href="{% url 'group-update' group.id %}">
+                        <button type="button" class="btn btn-warning">bearbeiten</button>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{% url 'group-delete' group.id %}">
+                        <button type="button" class="btn btn-danger">löschen</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><br><hr><br>
+</div>
+
+
+
+<br>
+  
+
+
+{% endblock %} 
+
+

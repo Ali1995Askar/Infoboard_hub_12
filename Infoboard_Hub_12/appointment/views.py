@@ -5,8 +5,8 @@ from django.contrib.auth import login , logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import Appointment, Advertising
-from .forms import AppointmentForm, AdvertisingForm, LoginForm
+from .models import Appointment, Advertising, Group
+from .forms import AppointmentForm, AdvertisingForm, LoginForm, GroupForm      
 
 # Create your views here.
 
@@ -45,7 +45,19 @@ def admin_logout (request) :
 def admin_dashboard(request):
     if request.method =='GET':
         appointments = Appointment.objects.all()
-        return render(request, 'admin_dashboard.html', context={'appointments': appointments }) 
+     
+        return render(request, 'admin_dashboard.html', context={'appointments': appointments}) 
+
+
+
+
+@login_required (login_url = 'admin-login')
+def groups_dashboard(request):
+    if request.method =='GET':
+        groups = Group.objects.all()
+        return render(request, 'groups_dashboard.html', context={'groups': groups}) 
+
+
 
 
 @method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
@@ -88,3 +100,44 @@ class AdvertisingUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse('index')
+
+
+
+
+
+
+
+
+
+
+
+
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
+class GroupCreate(CreateView):
+    model = Group
+    form_class = GroupForm
+    template_name = 'group_form.html'
+   
+    def get_success_url(self):
+          return reverse('groups-dashboard')
+
+
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
+class GroupUpdate(UpdateView):
+    model = Group
+    form_class = GroupForm
+    template_name = 'group_form.html'
+    context_object_name = 'group'
+  
+
+    def get_success_url(self):
+        return reverse('groups-dashboard')
+
+
+@method_decorator(login_required(login_url = 'admin-login'), name='dispatch')
+class GroupDelete(DeleteView):
+    model = Group
+    template_name = 'delete_group.html'
+
+    def get_success_url(self):
+        return reverse('groups-dashboard')

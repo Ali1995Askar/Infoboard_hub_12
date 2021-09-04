@@ -4,3 +4,4 @@ from  . import models
 
 admin.site.register (models.Appointment)
 admin.site.register (models.Advertising)
+admin.site.register (models.Group)
